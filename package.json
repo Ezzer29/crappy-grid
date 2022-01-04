@@ -1,0 +1,14 @@
+{
+  "name": "gout",
+  "version": "1.0.0",
+  "description": "Math or sth...",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "Ezzer29",
+  "license": "MIT",
+  "dependencies": {
+    "jimp": "^0.16.1"
+  }
+}
