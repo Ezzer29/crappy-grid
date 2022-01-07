@@ -54,15 +54,24 @@ function imgMagic (name) {
 
 // Modules
 
-const scale = 100;
-const step = .00001;
+const scale = 1250;
+const step = .000001;
 
-function universal () {
-    for ( let x = -1000; x <= 1000; x += step ) {
-        write ( x , (4 * x + 2)/(Math.pow(x, 2) + 4 * x - 5), scale, 10 );
+function universal (a) {
+    for ( let x = 0; x <= 2*Math.PI; x += step ) {
+        let sum1 = 0;
+        let sum2 = 0;
+        let c = 6;
+        for ( let i = 0; i <= c; i += 1 ) {
+            sum1 += Math.pow(5, -i*a)*Math.sin(Math.pow(5, i)*Math.PI*x); 
+        }
+        for ( let i = 0; i <= c; i += 1 ) {
+            sum2 += Math.pow(5, -i*a)*Math.cos(Math.pow(5, i)*Math.PI*x);
+        }
+        write ( sum1, sum2, scale, 10 );
     }
 }
 
 prep();
-universal();
+universal(.6);
 imgMagic('output');

@@ -9,3 +9,5 @@ npm start
 
 Btw, this is kinda wha u can do with it... Ye.. now u dont have to download it just to see how useless it is... ur welcome :)
 <img src="https://raw.githubusercontent.com/Ezzer29/crappy-grid/mastero/output.png" width="100%">
+<img src="https://raw.githubusercontent.com/Ezzer29/crappy-grid/mastero/output_crown.png" width="100%">
+<img src="https://raw.githubusercontent.com/Ezzer29/crappy-grid/mastero/output_cloud.png" width="100%">
