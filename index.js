@@ -5,6 +5,9 @@ const color_0 = Jimp.rgbaToInt(240, 240, 240, 255);
 const color_1 = Jimp.rgbaToInt(214, 16, 2, 255);
 const color_2 = Jimp.rgbaToInt(32, 9, 107, 255);
 
+// VARS
+const DEV = 0;
+
 let a = Array(5099).fill(0).map(()=>Array(5099).fill(0));
 
 // console.log(a);
@@ -22,9 +25,12 @@ function prep() {
     }
 }
 
-function write (x, y, k) {
-    try { a[Math.round(cursor(y))][Math.round(cursor(x))] = k; }
-    catch (err) { console.error('Da ErRor IN func write.. (y, x, cy, cx): ', y, x, cursor(y), cursor(x)); console.error(err); }
+function write (x, y, scale, k) {
+    try { a[Math.round(cursor(-y * scale))][Math.round(cursor(x * scale))] = k; }
+    catch (err) { 
+        if ( DEV >= 1 ) console.error('Da ErRor IN func write.. (y, x, cy, cx): ', y, x, cursor(y), cursor(x));
+        if ( DEV >= 2 ) console.error(err); 
+    }
 }
 
 function imgMagic (name) {
@@ -48,27 +54,15 @@ function imgMagic (name) {
 
 // Modules
 
-const zoom = 1500; // more like scale, but anyways...
+const scale = 100;
 const step = .00001;
 
-function crown (x) {
-    for ( let t = 0; t <= 2*Math.PI; t += step ) {
-        // write(Math.cos(t) * zoom, Math.sin(t) * zoom, 10);
-        let sum1 = 0;
-        let sum2 = 0;
-        let r1 = x;
-        let r2 = 5;
-        let c = 3;
-        for ( let i = 0; i <= c; i += 1 ) {
-            sum1 += Math.sin(Math.pow(r1, i)*t) / Math.pow(r2, i); 
-        }
-        for ( let i = 0; i <= c; i += 1 ) {
-            sum2 += Math.cos(Math.pow(r1, i)*t) / Math.pow(r2, i);  
-        }
-        write ( sum1 * zoom, sum2 * zoom, 10 );
+function universal () {
+    for ( let x = -1000; x <= 1000; x += step ) {
+        write ( x , (4 * x + 2)/(Math.pow(x, 2) + 4 * x - 5), scale, 10 );
     }
 }
 
 prep();
-crown(10);
+universal();
 imgMagic('output');
